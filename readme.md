@@ -1,3 +1,3 @@
-# Boilerplate Meteor React Project
+# WA App
 
 This inlcludes a basic setup
