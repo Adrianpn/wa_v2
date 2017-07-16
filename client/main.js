@@ -10,6 +10,15 @@ Tracker.autorun(() => {
   onAuthChange(isAuthenticated);
 });
 
+Tracker.autorun(() => {
+  const selectedServiceId = Session.get('selectedServiceId');
+  //Session.set('isNavOpen', false);
+
+  if (selectedServiceId) {
+    browserHistory.replace(`/ServiceRunDown/${selectedServiceId}`);
+  }
+});
+
 Meteor.startup(() => {
   ReactDOM.render(routes, document.getElementById('app'));
 });

@@ -12,14 +12,14 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'songs.insert'() {
+  'songs.insert'(songName, songArtist) {
     if (!this.userId) {
       throw new Meteor.Error('not-authorized');
     }
 
     return Songs.insert({
-      songName: '',
-      songArtist: '',
+      songName,
+      songArtist,
       userId: this.userId,
       updatedAt: moment().valueOf()
     });

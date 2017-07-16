@@ -13,8 +13,8 @@ export default class ChurchSongLibrary extends React.Component {
     const songArtist = this.refs.songArtist.value.trim();
     e.preventDefault();
 
-    if (songName) {
-      Songs.insert({ songName, songArtist });
+    if (songName && songArtist) {
+      Meteor.call('songs.insert', songName, songArtist);
       this.refs.songName.value = '';
       this.refs.songArtist.value = '';
     }

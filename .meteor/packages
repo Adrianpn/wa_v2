@@ -21,3 +21,4 @@ accounts-password
 session
 fourseven:scss@=3.13.0
 johnantoni:meteor-normalize
+react-meteor-data@0.2.9
