@@ -13,9 +13,15 @@ export default class ServiceRunDown extends React.Component {
   }
   onSubmit(e) {
 
-    var today =  new Date().valueOf();
-    const serviceDate = moment(today).format('dddd');
-    console.log(today);
+    //Code to calculate the upcoming Sunday's Date
+    var d = 0;
+    do {
+        d = 86440000 + d;
+        var today =  new Date().valueOf();
+        var serviceDay = moment(today + d).format('dddd');
+        var serviceDate = moment(today + d).format('LLLL');
+    }
+    while (serviceDay != "Sunday");
 
     e.preventDefault();
 
