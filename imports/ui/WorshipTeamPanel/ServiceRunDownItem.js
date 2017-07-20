@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import { Session } from 'meteor/session';
 import { createContainer } from 'meteor/react-meteor-data';
+import PropTypes from 'prop-types';
 
  export const ServiceRunDownItem = (props) => {
    const className = props.service.selected ? 'item item--selected' : 'item';
