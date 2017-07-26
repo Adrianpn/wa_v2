@@ -12,7 +12,7 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'services.insert'(serviceDate) {
+  'services.insert'(serviceDate, serviceSong) {
     if (!this.userId) {
       throw new Meteor.Error('not-authorized');
     }
@@ -20,7 +20,8 @@ Meteor.methods({
     return Services.insert({
       serviceDate,
       userId: this.userId,
-      updatedAt: moment().valueOf()
+      updatedAt: moment().valueOf(),
+      serviceSong: ["Isreal", "Be Be Wians", "Kirk Franklin" ]
     });
   },
   'services.remove'(_id) {
@@ -37,24 +38,24 @@ Meteor.methods({
 
     Services.remove({ _id, userId: this.userId });
   },
-  'services.update'(_id, updates) {
+  'services.update'(_id) {
     if (!this.userId) {
       throw new Meteor.Error('not-authorized');
     }
 
-    new SimpleSchema({
-      _id: {
-        type: String,
-        min: 1
-      },
-      serviceDate: {
-        type: String,
-        optional: true
-      }
-    }).validate({
-      _id,
-      ...updates
-    });
+    // new SimpleSchema({
+    //   _id: {
+    //     type: String,
+    //     min: 1
+    //   },
+    //   serviceDate: {
+    //     type: String,
+    //     optional: true
+    //   }
+    // }).validate({
+    //   _id,
+    //   ...updates
+    // });
 
     Services.update({
       _id,
@@ -62,9 +63,8 @@ Meteor.methods({
     }, {
       $set: {
         updatedAt: moment().valueOf(),
-        ...updates
+        serviceSong: ["test", "Adrian", "Worth"]
       }
     });
-
   }
 });
