@@ -25,9 +25,9 @@ export default createContainer(() => {
   const selectedServiceId = Session.get('selectedServiceId');
   Meteor.subscribe('services');
 
-
   return {
     services: Services.find({}, { sort: { updatedAt:-1 } } ).fetch().map((service)=> {
+      //console.log(service);
       return {
         ...service,
         selected: service._id === selectedServiceId

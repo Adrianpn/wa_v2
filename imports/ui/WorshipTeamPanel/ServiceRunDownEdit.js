@@ -12,7 +12,7 @@ export class ServiceRunDownEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      serviceSong: 'test'
+
       };
   }
 
@@ -25,10 +25,13 @@ export class ServiceRunDownEdit extends React.Component {
     var serviceSong = this.props.service.serviceSong;
     console.log(this.props.service.serviceSong);
 
-    if (serviceSong) {
+    //() => this.props.setState({isOpen: true});
+
+
+    // if (serviceSong) {
       //Meteor.call('services.update', this.props.service._id, {serviceSong});
-      this.props.call('services.update', this.props.service._id,  serviceSong );
-    }
+    //   this.props.call('songs.insert', this.props.service._id,  serviceSong );
+    // }
   }
 
   render() {

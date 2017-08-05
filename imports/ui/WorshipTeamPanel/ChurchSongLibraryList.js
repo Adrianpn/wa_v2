@@ -2,6 +2,7 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 import { Songs } from '../../api/songs';
+//import { Services } from '../../api/services';
 
 export default class ChurchSongLibraryList extends React.Component {
   constructor(props) {
@@ -24,7 +25,12 @@ export default class ChurchSongLibraryList extends React.Component {
   }
   renderSongsListItems() {
     return this.state.songs.map((song) => {
-      return <p key={song._id}>Name: {song.songName} Artist: {song.songArtist}</p>
+      return <p onClick={() => {
+        const _id = Session.get('selectedServiceId');
+        const songItem = song._id;
+        console.log(songItem);
+        Meteor.call('services.update', _id, songItem);
+      }} className='item' key={song._id}>Name: {song.songName} Artist: {song.songArtist}</p>
     });
   }
   render() {

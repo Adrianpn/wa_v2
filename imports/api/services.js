@@ -21,7 +21,7 @@ Meteor.methods({
       serviceDate,
       userId: this.userId,
       updatedAt: moment().valueOf(),
-      serviceSong: ["Isreal", "Be Be Wians", "Kirk Franklin" ]
+      serviceSong: ["yZ72Mjpiq3awAxtae", "XXS8BpMWNuqugH4eG" ]
     });
   },
   'services.remove'(_id) {
@@ -38,33 +38,20 @@ Meteor.methods({
 
     Services.remove({ _id, userId: this.userId });
   },
-  'services.update'(_id) {
+  'services.update'(_id, songItem) {
     if (!this.userId) {
       throw new Meteor.Error('not-authorized');
     }
-
-    // new SimpleSchema({
-    //   _id: {
-    //     type: String,
-    //     min: 1
-    //   },
-    //   serviceDate: {
-    //     type: String,
-    //     optional: true
-    //   }
-    // }).validate({
-    //   _id,
-    //   ...updates
-    // });
 
     Services.update({
       _id,
       userId: this.userId
     }, {
-      $set: {
-        updatedAt: moment().valueOf(),
-        serviceSong: ["test", "Adrian", "Worth"]
-      }
+      $push: { serviceSong: songItem }
+      // $set: {
+      //   updatedAt: moment().valueOf(),
+      //   serviceSong: [ "uY5HF3ZFZfpiGS2Xg", "hxug5DziSfqDdmFSA" ]}
     });
+    console.log("song " + songItem);
   }
 });

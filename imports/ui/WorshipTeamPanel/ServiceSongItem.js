@@ -4,15 +4,19 @@ import { Session } from 'meteor/session';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Services } from '../../api/services';
 import { Songs } from '../../api/songs';
+import ReactModal from 'react-modal';
+import AddSong from './AddSong';
 
- export const ServiceSongItem = (props) => {
-   const className = props.service.selected ? 'item item--selected' : 'item';
+export const ServiceSongItem = (props) => {
+
+  // const className = props.service.selected ? 'item item--selected' : 'item';
+
   return (
-    <div className={className} onClick={() => {
-      props.Session.set('selectedServiceId', props.service._id);
-    }}>
-      <h5 className="item__title">{ props.service.serviceSong || 'Add Songs' }</h5>
-      <p className="item__subtitle">{ moment(props.service.updatedAt).format('M/DD/YY') }</p>
+    <div className='item'>
+      <h5 className="item__title">{ props.song.songName || 'Add Songs' }</h5>
+      <h5 className="item__title">{ props.song.songArtist }</h5>
+      <p className="item__subtitle">{ moment(props.song.updatedAt).format('M/DD/YY') }</p>
+      <AddSong/>
     </div>
   );
 };
@@ -31,7 +35,7 @@ export default createContainer(() => {
 
   return {
     selectedServiceId,
-    service: Services.findOne(selectedServiceId),
+    //service: Services.findOne(selectedServiceId),
     call: Meteor.call
   };
 }, ServiceSongItem);
