@@ -28,7 +28,6 @@ export default class ChurchSongLibraryList extends React.Component {
       return <p onClick={() => {
         const _id = Session.get('selectedServiceId');
         const songItem = song._id;
-        console.log(songItem);
         Meteor.call('services.update', _id, songItem);
       }} className='item' key={song._id}>Name: {song.songName} Artist: {song.songArtist}</p>
     });

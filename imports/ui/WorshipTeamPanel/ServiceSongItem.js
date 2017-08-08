@@ -17,6 +17,12 @@ export const ServiceSongItem = (props) => {
       <h5 className="item__title">{ props.song.songArtist }</h5>
       <p className="item__subtitle">{ moment(props.song.updatedAt).format('M/DD/YY') }</p>
       <AddSong/>
+      <button className="button" onClick={() => {
+          const _id = Session.get('selectedServiceId');
+          const songItem = props.song._id;
+          console.log(props.song._id);
+          Meteor.call('services.removeSong', _id, songItem);
+        }}>+ Delete Song</button>
     </div>
   );
 };

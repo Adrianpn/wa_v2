@@ -38,6 +38,23 @@ Meteor.methods({
 
     Services.remove({ _id, userId: this.userId });
   },
+  'services.removeSong'(_id, songItem) {
+    if (!this.userId) {
+      throw new Meteor.Error('not-authorized');
+    }
+
+    new SimpleSchema({
+      _id: {
+        type: String,
+        min: 1
+      }
+    }).validate({ _id });
+
+    console.log('test');
+
+    Services.update({ _id, userId: this.userId },
+    { $pull: { serviceSong:  songItem  } });
+  },
   'services.update'(_id, songItem) {
     if (!this.userId) {
       throw new Meteor.Error('not-authorized');
