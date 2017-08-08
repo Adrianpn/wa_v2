@@ -6,11 +6,12 @@ import PropTypes from 'prop-types';
 import { Services } from '../../api/services';
 import { Songs } from '../../api/songs';
 import ServiceSongItem from './ServiceSongItem';
+import AddSong from './AddSong';
 
 export const ServiceSongList = (props) => {
   return (
     <div className="item-list">
-      {/* { props.services.length === 0 ? <ServiceListEmptyItem/> : undefined } */}
+      { props.songs.length === 0 ? <AddSong/> : undefined }
       {/* { props.services.map((service) => {
         return <ServiceSongItem key={service.serviceSong} service={service}/>;
       })} */}

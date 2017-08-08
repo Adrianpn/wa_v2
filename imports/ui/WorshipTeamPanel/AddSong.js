@@ -42,7 +42,7 @@ export default class AddSong extends  React.Component {
   render() {
     return (
       <div>
-        <button className="button" onClick={() => this.setState({isOpen: true})}>+ Change Song</button>
+        <button className="button" onClick={() => this.setState({isOpen: true})}>+ Add/Change Song</button>
         <Modal
           isOpen={this.state.isOpen}
           onRequestClose={this.handleModalClose.bind(this)}
