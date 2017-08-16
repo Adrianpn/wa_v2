@@ -3,28 +3,28 @@ import { Meteor } from 'meteor/meteor';
 import moment from 'moment';
 import SimpleSchema from 'simpl-schema';
 
-export const Services = new Mongo.Collection('services');
+export const Ministries = new Mongo.Collection('ministries');
 
 if (Meteor.isServer) {
-  Meteor.publish('services', () => {
-    return Services.find();
+  Meteor.publish('ministries', () => {
+    return Ministries.find();
   });
 }
 
 Meteor.methods({
-  'services.insert'(serviceDate, serviceSong) {
+  'ministries.insert'(serviceDate, serviceSong) {
     if (!this.userId) {
       throw new Meteor.Error('not-authorized');
     }
 
-    return Services.insert({
-      serviceDate,
-      userId: this.userId,
-      updatedAt: moment().valueOf(),
-      serviceSong: []
+    return Ministries.insert({
+      ministryName,
+      ministryGenre,
+      ministryMembers: this.userId,
+      updatedAt: moment().valueOf()
     });
   },
-  'services.remove'(_id) {
+  'ministries.remove'(_id) {
     if (!this.userId) {
       throw new Meteor.Error('not-authorized');
     }
@@ -36,9 +36,9 @@ Meteor.methods({
       }
     }).validate({ _id });
 
-    Services.remove({ _id, userId: this.userId });
+    Ministries.remove({ _id, userId: this.userId });
   },
-  'services.removeSong'(_id, songItem) {
+  'ministries.removeSong'(_id, songItem) {
     if (!this.userId) {
       throw new Meteor.Error('not-authorized');
     }
@@ -51,15 +51,15 @@ Meteor.methods({
     }).validate({ _id });
 
 
-    Services.update({ _id, userId: this.userId },
+    Ministries.update({ _id, userId: this.userId },
     { $pull: { serviceSong:  songItem  } });
   },
-  'services.update'(_id, songItem) {
+  'ministries.update'(_id, songItem) {
     if (!this.userId) {
       throw new Meteor.Error('not-authorized');
     }
 
-    Services.update({
+    Ministries.update({
       _id,
       userId: this.userId
     }, {

@@ -2,7 +2,6 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 import { Songs } from '../../api/songs';
-//import { Services } from '../../api/services';
 
 export default class ChurchSongLibraryList extends React.Component {
   constructor(props) {
@@ -29,6 +28,7 @@ export default class ChurchSongLibraryList extends React.Component {
         const _id = Session.get('selectedServiceId');
         const songItem = song._id;
         Meteor.call('services.update', _id, songItem);
+        console.log("test");
       }} className='item' key={song._id}>Name: {song.songName} Artist: {song.songArtist}</p>
     });
   }

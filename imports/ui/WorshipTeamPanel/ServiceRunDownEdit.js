@@ -41,9 +41,6 @@ export class ServiceRunDownEdit extends React.Component {
         <div className="page-content">
           <h1>Service Run Down</h1>
           <ServiceSongList/>
-          <form onSubmit={this.onSubmit.bind(this)}>
-            <button>Add Songs to Rundown</button>
-          </form>
         </div>
       </div>
     );

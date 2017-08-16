@@ -51,7 +51,7 @@ export default class AddSong extends  React.Component {
           overlayClassName="boxed-view boxed-view--modal">
           <h1>Add Songs</h1>
           {this.state.error ? <p>{this.state.error}</p> : undefined }
-          <form onSubmit={this.onSubmit.bind(this)} className="boxed-view__form">
+          <form className="boxed-view__form">
             <ChurchSongLibraryList/>
             <button type="button" className="button button--secondary" onClick={this.handleModalClose.bind(this)}>Cancel</button>
           </form>
