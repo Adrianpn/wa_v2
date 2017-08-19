@@ -19,22 +19,15 @@ export class UserProfilePage extends React.Component {
     const value = target.value;
     const name = target.name;
 
-    console.log("value " + value);
-    console.log("target " + target);
-    console.log("name " + name);
-
     this.setState({
       [name]: value
     });
 
-    //Meteor.users.update({ _id: Meteor.userId() }, { $set:{ profile: { [name]: value } } });
     if ([name] == "firstName")
       {
-        console.log("firstName Entered");
         Meteor.users.update({_id: Meteor.userId()}, {$set: {"profile.firstName": value }});
       }
       else {
-                console.log("lastName Entered");
         Meteor.users.update({_id: Meteor.userId()}, {$set: {"profile.lastName": value }});
       }
   }

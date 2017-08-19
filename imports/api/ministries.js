@@ -12,14 +12,14 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'ministries.insert'(serviceDate, serviceSong) {
+  'ministries.insert'() {
     if (!this.userId) {
       throw new Meteor.Error('not-authorized');
     }
 
     return Ministries.insert({
-      ministryName,
-      ministryGenre,
+      ministryName: '',
+      ministryGenre: '',
       ministryMembers: this.userId,
       updatedAt: moment().valueOf()
     });
@@ -39,34 +39,29 @@ Meteor.methods({
     Ministries.remove({ _id, userId: this.userId });
   },
   'ministries.removeSong'(_id, songItem) {
-    if (!this.userId) {
-      throw new Meteor.Error('not-authorized');
-    }
-
-    new SimpleSchema({
-      _id: {
-        type: String,
-        min: 1
+      if (!this.userId) {
+        throw new Meteor.Error('not-authorized');
       }
-    }).validate({ _id });
 
+      new SimpleSchema({
+        _id: {
+          type: String,
+          min: 1
+        }
+      }).validate({ _id });
 
-    Ministries.update({ _id, userId: this.userId },
-    { $pull: { serviceSong:  songItem  } });
+      Ministries.update({ _id, userId: this.userId },
+      { $pull: { serviceSong:  songItem  } });
   },
-  'ministries.update'(_id, songItem) {
-    if (!this.userId) {
-      throw new Meteor.Error('not-authorized');
-    }
+  'ministries.update'([name], value) {
+      if (!this.userId) {
+        throw new Meteor.Error('not-authorized');
+      }
 
-    Ministries.update({
-      _id,
-      userId: this.userId
-    }, {
-      $push: { serviceSong: songItem }
-      // $set: {
-      //   updatedAt: moment().valueOf(),
-      //   serviceSong: [ "uY5HF3ZFZfpiGS2Xg", "hxug5DziSfqDdmFSA" ]}
-    });
-  }
+      Ministries.update({ ministryMembers: this.userId},
+      {
+        $set: { [name]:value }
+
+      });
+    }
 });

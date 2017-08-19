@@ -11,6 +11,7 @@ import  ServiceRunDown from '../ui/WorshipTeamPanel/ServiceRunDown';
 import  ServiceRunDownEdit from '../ui/WorshipTeamPanel/ServiceRunDownEdit';
 import  ChurchSongLibrary from '../ui/WorshipTeamPanel/ChurchSongLibrary';
 import  UserProfilePage from '../ui/UserProfile/UserProfilePage';
+import  MinistryPanel from '../ui/MinistryPanel/MinistryPanel';
 
 const onEnterServicePage = (nextState) => {
   Session.set('selectedServiceId', nextState.params.id);
@@ -45,6 +46,7 @@ export const routes = (
       <Route path="/WorshipTeamPanel" component={WorshipTeamPanel} privacy="auth"/>
       <Route path="/ServiceRunDown" component={ServiceRunDown} privacy="auth"/>
       <Route path="/UserProfile" component={UserProfilePage} privacy="auth"/>
+      <Route path="/MinistryPanel" component={MinistryPanel} privacy="auth"/>
       <Route path="/ServiceRunDown/:id" component={ServiceRunDownEdit} privacy="auth" onEnter={onEnterServicePage} onLeave={onLeaveServicePage}/>
       <Route path="/ChurchSongLibrary" component={ChurchSongLibrary} privacy="auth"/>
       <Route path="/ChurchSongLibrary/:id" component={ChurchSongLibrary} privacy="auth" onEnter={onEnterServicePage} onLeave={onLeaveServicePage}/>
