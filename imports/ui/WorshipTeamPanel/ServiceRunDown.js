@@ -4,44 +4,53 @@ import { Link } from 'react-router';
 import ServiceRunDownList from './ServiceRunDownList';
 import { Tracker } from 'meteor/tracker';
 import { Services } from '../../api/services';
+import { Ministries } from '../../api/ministries';
 import moment from 'moment';
 
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import DatePicker from 'material-ui/DatePicker';
+
+// injectTapEventPlugin();
 
 export default class ServiceRunDown extends React.Component {
-  onLogout() {
-    Accounts.logout();
-  }
-  onSubmit(e) {
 
-    //Code to calculate the upcoming Sunday's Date
-    var d = 0;
-    do {
-        d = 86440000 + d;
-        var today =  new Date().valueOf();
-        var serviceDay = moment(today + d).format('dddd');
-        var serviceDate = moment(today + d).format('LLLL');
+  constructor(props){
+    super(props);
+
+    this.state = {
+    date: null
     }
-    while (serviceDay != "Sunday");
 
-    e.preventDefault();
+    this.handleDate = this.handleDate.bind(this);
+  };
 
-    if (serviceDate) {
-      Meteor.call('services.insert', serviceDate);
-    }
+  handleDate(event, date){
+    this.setState({date})
+    var serviceDay = moment(date).format('LLLL');
+    Meteor.call('services.insert', serviceDay);
   }
 
   render() {
     return (
-      <div>
-        <PrivateHeader title="Dashboard"/>
-        <div className="page-content">
-          <h1>Service Run Down</h1>
-          <ServiceRunDownList/>
-          <form onSubmit={this.onSubmit.bind(this)}>
-            <button>Create Service Rundown</button>
-          </form>
+      <MuiThemeProvider>
+        <div>
+          <PrivateHeader title="Dashboard"/>
+          <div className="page-content">
+            <h1>Service Run Down</h1>
+            <ServiceRunDownList/>
+            <DatePicker
+              hintText="Enter Service Date"
+              onChange={this.handleDate}
+              locale="en-US"
+              firstDayOfWeek={0}
+            />
+            {/* <form onSubmit={this.onSubmit.bind(this)}>
+              <button>Create Service Rundown</button>
+            </form> */}
+          </div>
         </div>
-      </div>
-    );
-  }
-};
+      </MuiThemeProvider>
+        )
+    }
+}
