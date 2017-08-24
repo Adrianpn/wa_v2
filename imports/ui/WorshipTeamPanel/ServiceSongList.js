@@ -11,7 +11,8 @@ import AddSong from './AddSong';
 export const ServiceSongList = (props) => {
   return (
     <div className="item-list">
-      { props.songs.length === 0 ? <AddSong/> : undefined }
+      <AddSong/>
+      {/* { props.songs.length === 0 ? <AddSong/> : undefined } */}
       {/* { props.services.map((service) => {
         return <ServiceSongItem key={service.serviceSong} service={service}/>;
       })} */}

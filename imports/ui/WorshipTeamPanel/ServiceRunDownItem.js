@@ -3,16 +3,59 @@ import moment from 'moment';
 import { Session } from 'meteor/session';
 import { createContainer } from 'meteor/react-meteor-data';
 
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {List, ListItem} from 'material-ui/List';
+import Divider from 'material-ui/Divider';
+import Subheader from 'material-ui/Subheader';
+import Avatar from 'material-ui/Avatar';
+import {grey400, darkBlack, lightBlack} from 'material-ui/styles/colors';
+import IconButton from 'material-ui/IconButton';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+
+const iconButtonElement = (
+  <IconButton
+    touch={true}
+    tooltip=""
+    tooltipPosition="bottom-left"
+  >
+    <MoreVertIcon color={grey400} />
+  </IconButton>
+);
+
  export const ServiceRunDownItem = (props) => {
    const className = props.service.selected ? 'item item--selected' : 'item';
+   const rightIconMenu = (
+     <IconMenu iconButtonElement={iconButtonElement}>
+       {/* <MenuItem>Reply</MenuItem>
+       <MenuItem>Forward</MenuItem> */}
+       <MenuItem onClick={() => {
+           Meteor.call('services.remove', props.service._id);
+       }}>Delete</MenuItem>
+     </IconMenu>
+   );
   return (
-    <div className={className} onClick={() => {
-      props.Session.set('selectedServiceId', props.service._id);
-    }}>
-      <h5 className="item__title">{ props.service.serviceDate || 'Untitled Service' }</h5>
-      <p className="item__subtitle">{ moment(props.service.updatedAt).format('M/DD/YY') }</p>
-    </div>
-  );
+      <MuiThemeProvider>
+          <List>
+            <ListItem
+              onClick={() => {
+                props.Session.set('selectedServiceId', props.service._id);
+              }}
+              leftAvatar={<Avatar src="http://www.material-ui.com/images/ok-128.jpg" />}
+              rightIconButton={rightIconMenu}
+              primaryText={props.service.serviceDate || 'Untitled Service'}
+              secondaryText={
+                <div>
+                  {/* <p>{ moment(props.service.updatedAt).format('M/DD/YY') }</p> */}
+                </div>
+              }
+              secondaryTextLines={2}
+            />
+            <Divider inset={true} />
+        </List>
+      </MuiThemeProvider>
+    );
 };
 
 ServiceRunDownItem.propTypes = {

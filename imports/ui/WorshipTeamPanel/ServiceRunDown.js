@@ -1,8 +1,6 @@
 import React from 'react';
 import PrivateHeader from '../PrivateHeader';
-import { Link } from 'react-router';
 import ServiceRunDownList from './ServiceRunDownList';
-import { Tracker } from 'meteor/tracker';
 import { Services } from '../../api/services';
 import { Ministries } from '../../api/ministries';
 import moment from 'moment';
@@ -45,12 +43,9 @@ export default class ServiceRunDown extends React.Component {
               locale="en-US"
               firstDayOfWeek={0}
             />
-            {/* <form onSubmit={this.onSubmit.bind(this)}>
-              <button>Create Service Rundown</button>
-            </form> */}
           </div>
         </div>
       </MuiThemeProvider>
-        )
+      )
     }
 }
