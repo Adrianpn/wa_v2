@@ -4,90 +4,34 @@ import { Meteor } from 'meteor/meteor';
 import ChurchSongLibraryList from './ChurchSongLibraryList';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
+import Drawer from 'material-ui/Drawer';
+import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
-import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
-
-const styles = {
-  radioButton: {
-    marginTop: 16,
-  },
-};
+import IconButton from 'material-ui/IconButton';
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
 
 export default class AddSong extends  React.Component {
   constructor(props){
     super(props);
     this.state = {
-      isOpen: false,
-      error: '',
       open: false
     };
   }
-  onSubmit(e) {
-    const { url } = this.state;
-    e.preventDefault();
-
-    if (url) {
-      Meteor.call('links.insert', url, (err, res) => {
-        if(!err){
-          this.handleModalClose();
-        } else{
-          this.setState({ error: err.reason });
-        }
-      });
-    }
-  }
-
-  onChange(e) {
-    this.setState({
-      url: e.target.value
-    });
-  }
-
-  handleModalClose() {
-    this.setState({
-      isOpen: false,
-      error: ''
-    });
-  }
-
-  handleOpen() {
-    this.setState({open: true});
-  }
-
-  handleClose () {
-    this.setState({open: false});
-  }
 
   render() {
-    const actions = [
-     <FlatButton
-       label="Cancel"
-       primary={true}
-       onClick={() => this.setState({open: false})}
-     />
-   ];
-
     return (
       <MuiThemeProvider>
-        <div>
-          <RaisedButton label="+ Add/Change Song" onClick={() => this.setState({open: true})} />
-          <Dialog
-            title="Add Songs"
-            actions={actions}
-            modal={false}
-            open={this.state.open}
-            onRequestClose={() => this.setState({open: false})}
-            autoScrollBodyContent={true}
-          >
-            {this.state.error ? <p>{this.state.error}</p> : undefined }
-              <form className="boxed-view__form">
-                <ChurchSongLibraryList/>
-              </form>
-          </Dialog>
-        </div>
-      </MuiThemeProvider>
+      <div>
+        <RaisedButton
+          label="Add Songs"
+          onClick={() => this.setState({open: !this.state.open})}
+        />
+        <Drawer width={300} openSecondary={true} open={this.state.open}>
+          <AppBar title="Songs" iconElementLeft={<IconButton><NavigationClose onClick={() => this.setState({open: !this.state.open})}/></IconButton>} />
+          <ChurchSongLibraryList/>
+        </Drawer>
+      </div>
+    </MuiThemeProvider>
     );
   }
 }
