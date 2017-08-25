@@ -12,61 +12,54 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'services.insert'(serviceDate, serviceSong) {
-    if (!this.userId) {
-      throw new Meteor.Error('not-authorized');
-    }
+      'services.insert'(serviceDate, serviceSong) {
+        if (!this.userId) {
+          throw new Meteor.Error('not-authorized');
+        }
 
-    return Services.insert({
-      serviceDate,
-      userId: this.userId,
-      updatedAt: moment().valueOf(),
-      serviceSong: []
-    });
+        return Services.insert({
+          serviceDate,
+          userId: this.userId,
+          updatedAt: moment().valueOf(),
+          serviceSong: []
+        });
   },
-  'services.remove'(_id) {
-    if (!this.userId) {
-      throw new Meteor.Error('not-authorized');
-    }
+      'services.remove'(_id) {
+        if (!this.userId) {
+          throw new Meteor.Error('not-authorized');
+        }
 
-    new SimpleSchema({
-      _id: {
-        type: String,
-        min: 1
-      }
-    }).validate({ _id });
+        new SimpleSchema({
+          _id: {
+            type: String,
+            min: 1
+          }
+        }).validate({ _id });
 
-    Services.remove({ _id, userId: this.userId });
+        Services.remove({ _id, userId: this.userId });
   },
-  'services.removeSong'(_id, songItem) {
-    if (!this.userId) {
-      throw new Meteor.Error('not-authorized');
-    }
+      'services.removeSong'(_id, songItem) {
+        if (!this.userId) {
+          throw new Meteor.Error('not-authorized');
+        }
 
-    new SimpleSchema({
-      _id: {
-        type: String,
-        min: 1
-      }
-    }).validate({ _id });
+        new SimpleSchema({
+          _id: {
+            type: String,
+            min: 1
+          }
+        }).validate({ _id });
 
 
-    Services.update({ _id, userId: this.userId },
-    { $pull: { serviceSong:  songItem  } });
+        Services.update({ _id },
+        { $pull: { serviceSong:  songItem  } });
   },
-  'services.update'(_id, songItem) {
-    if (!this.userId) {
-      throw new Meteor.Error('not-authorized');
-    }
+      'services.update'( _id, songItem ) {
+        if (!this.userId) {
+          throw new Meteor.Error('not-authorized');
+        }
 
-    Services.update({
-      _id,
-      userId: this.userId
-    }, {
-      $push: { serviceSong: songItem }
-      // $set: {
-      //   updatedAt: moment().valueOf(),
-      //   serviceSong: [ "uY5HF3ZFZfpiGS2Xg", "hxug5DziSfqDdmFSA" ]}
-    });
+        Services.update({ _id },
+          { $push: { serviceSong: songItem } });
   }
 });
