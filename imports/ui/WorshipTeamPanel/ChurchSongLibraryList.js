@@ -10,8 +10,8 @@ import ActionInfo from 'material-ui/svg-icons/action/info';
 import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
 import Avatar from 'material-ui/Avatar';
-import ActionAssignment from 'material-ui/svg-icons/action/assignment';
-import Delete from 'material-ui/svg-icons/action/delete';
+import AvLibraryMusic from 'material-ui/svg-icons/av/library-music';
+//import Delete from 'material-ui/svg-icons/action/delete';
 import {blue500, yellow600} from 'material-ui/styles/colors';
 
 export default class ChurchSongLibraryList extends React.Component {
@@ -45,7 +45,7 @@ export default class ChurchSongLibraryList extends React.Component {
                   const songItem = song._id;
                   Meteor.call('services.update', _id, songItem);
                 }}
-              leftAvatar={<Avatar icon={<ActionAssignment />} backgroundColor={blue500} />}
+              leftAvatar={<Avatar icon={<AvLibraryMusic />} backgroundColor={blue500} />}
               primaryText= { song.songName }
               secondaryText= { song.songArtist }
             />

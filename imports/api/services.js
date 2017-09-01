@@ -52,7 +52,7 @@ Meteor.methods({
 
 
         Services.update({ _id },
-        { $pull: { serviceSong:  songItem  } });
+        { $pull: { serviceSong:  {songId: songItem}  } });
   },
       'services.update'( _id, songItem ) {
         if (!this.userId) {
@@ -60,6 +60,14 @@ Meteor.methods({
         }
 
         Services.update({ _id },
-          { $push: { serviceSong: songItem } });
+          { $push: { serviceSong: {songId: songItem, songServiceKey: songItem, songServiceSpeed: songItem} } });
+  },
+      'services.changeSongKey'( _id, songItem, key ) {
+        if (!this.userId) {
+          throw new Meteor.Error('not-authorized');
+        }
+
+        Services.update({ _id, "serviceSong.songId": songItem },
+          { $set: {  "serviceSong.$.songServiceKey": key } });
   }
 });

@@ -2,7 +2,7 @@ import React from 'react';
 import PrivateHeader from '../PrivateHeader';
 import { Link } from 'react-router';
 import ServiceSongList from './ServiceSongList';
-import { Tracker } from 'meteor/tracker';
+//import { Tracker } from 'meteor/tracker';
 import { Services } from '../../api/services';
 import moment from 'moment';
 import { createContainer } from 'meteor/react-meteor-data';
@@ -16,14 +16,14 @@ export class ServiceRunDownEdit extends React.Component {
       };
   }
 
-  onLogout() {
-    Accounts.logout();
-  }
-  onSubmit(e) {
-
-    e.preventDefault();
-    var serviceSong = this.props.service.serviceSong;
-    console.log(this.props.service.serviceSong);
+  // onLogout() {
+  //   Accounts.logout();
+  // }
+  // onSubmit(e) {
+  //
+  //   e.preventDefault();
+  //   var serviceSong = this.props.service.serviceSong;
+  //   console.log(this.props.service.serviceSong);
 
     //() => this.props.setState({isOpen: true});
 
@@ -32,7 +32,7 @@ export class ServiceRunDownEdit extends React.Component {
     // Meteor.call('services.update', this.props.service._id, {serviceSong});
     // this.props.call('songs.insert', this.props.service._id,  serviceSong );
     // }
-  }
+  // }
 
   render() {
     return (
@@ -52,7 +52,6 @@ export default createContainer(() => {
 
   return {
     selectedServiceId,
-    service: Services.findOne(selectedServiceId),
-    call: Meteor.call
+    service: Services.findOne(selectedServiceId)
   };
 }, ServiceRunDownEdit);
