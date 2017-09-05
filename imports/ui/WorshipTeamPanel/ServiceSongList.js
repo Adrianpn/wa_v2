@@ -56,7 +56,7 @@ export default createContainer( () => {
         };
 
       }),
-    songs: Songs.find(  { _id: { $in:  finalSongList  } }, { sort: { updatedAt:-1 } } ).fetch().map((song)=> {
+    songs: Songs.find(  { _id: { $in: finalSongList } }, { sort: { updatedAt:-1 } } ).fetch().map((song)=> {
         return {
           ...song
         };

@@ -45,98 +45,98 @@ export default class ChangeSongKey extends React.Component {
             {/* <SongKeyList/> */}
             <button className="button" onClick={() => {
                 const _id = Session.get('selectedServiceId');
-                const songItem = this.props.song._id;
-                console.log(songItem);
+                const _serviceSongId = songList[this.props.service]._serviceSongId;
+                console.log(songList[this.props.service]._serviceSongId);
                 let key = "A";
-                Meteor.call('services.changeSongKey', _id, songItem, key);
+                Meteor.call('services.changeSongKey', _id, _serviceSongId, key);
                 this.setState({open: false});
               }}>A</button>
             <button className="button" onClick={() => {
                 const _id = Session.get('selectedServiceId');
-                const songItem = this.props.song._id;
-                console.log(songItem);
+                const _serviceSongId = songList[this.props.service]._serviceSongId;
+                console.log(_serviceSongId);
                 let key = "B";
-                Meteor.call('services.changeSongKey', _id, songItem, key);
+                Meteor.call('services.changeSongKey', _id, _serviceSongId, key);
                 this.setState({open: false});
               }}>B</button>
             <button className="button" onClick={() => {
                 const _id = Session.get('selectedServiceId');
-                const songItem = this.props.song._id;
-                console.log(songItem);
+                const _serviceSongId = songList[this.props.service]._serviceSongId;
+                console.log(_serviceSongId);
                 let key = "C";
-                Meteor.call('services.changeSongKey', _id, songItem, key);
+                Meteor.call('services.changeSongKey', _id, _serviceSongId, key);
                 this.setState({open: false});
               }}>C</button>
             <button className="button" onClick={() => {
                 const _id = Session.get('selectedServiceId');
-                const songItem = this.props.song._id;
-                console.log(songItem);
+                const _serviceSongId = songList[this.props.service]._serviceSongId;
+                console.log(_serviceSongId);
                 let key = "D";
-                Meteor.call('services.changeSongKey', _id, songItem, key);
+                Meteor.call('services.changeSongKey', _id, _serviceSongId, key);
                 this.setState({open: false});
               }}>D</button>
               <button className="button" onClick={() => {
                   const _id = Session.get('selectedServiceId');
-                  const songItem = this.props.song._id;
-                  console.log(songItem);
+                  const _serviceSongId = songList[this.props.service]._serviceSongId;
+                  console.log(_serviceSongId);
                   let key = "E";
-                  Meteor.call('services.changeSongKey', _id, songItem, key);
+                  Meteor.call('services.changeSongKey', _id, _serviceSongId, key);
                   this.setState({open: false});
                 }}>E</button>
               <button className="button" onClick={() => {
                   const _id = Session.get('selectedServiceId');
-                  const songItem = this.props.song._id;
-                  console.log(songItem);
+                  const _serviceSongId = songList[this.props.service]._serviceSongId;
+                  console.log(_serviceSongId);
                   let key = "F";
-                  Meteor.call('services.changeSongKey', _id, songItem, key);
+                  Meteor.call('services.changeSongKey', _id, _serviceSongId, key);
                   this.setState({open: false});
                 }}>F</button>
                 <button className="button" onClick={() => {
                     const _id = Session.get('selectedServiceId');
-                    const songItem = this.props.song._id;
-                    console.log(songItem);
+                    const _serviceSongId = songList[this.props.service]._serviceSongId;
+                    console.log(_serviceSongId);
                     let key = "G";
-                    Meteor.call('services.changeSongKey', _id, songItem, key);
+                    Meteor.call('services.changeSongKey', _id, _serviceSongId, key);
                     this.setState({open: false});
                   }}>G</button>
               <button className="button" onClick={() => {
                   const _id = Session.get('selectedServiceId');
-                  const songItem = this.props.song._id;
-                  console.log(songItem);
+                  const _serviceSongId = songList[this.props.service]._serviceSongId;
+                  console.log(_serviceSongId);
                   let key = "F#";
-                  Meteor.call('services.changeSongKey', _id, songItem, key);
+                  Meteor.call('services.changeSongKey', _id, _serviceSongId, key);
                   this.setState({open: false});
                 }}>F#</button>
                 <button className="button" onClick={() => {
                     const _id = Session.get('selectedServiceId');
-                    const songItem = this.props.song._id;
-                    console.log(songItem);
+                    const _serviceSongId = songList[this.props.service]._serviceSongId;
+                    console.log(_serviceSongId);
                     let key = "C(#)";
-                    Meteor.call('services.changeSongKey', _id, songItem, key);
+                    Meteor.call('services.changeSongKey', _id, _serviceSongId, key);
                     this.setState({open: false});
                   }}>C#</button>
                 <button className="button" onClick={() => {
                     const _id = Session.get('selectedServiceId');
-                    const songItem = this.props.song._id;
-                    console.log(songItem);
+                    const _serviceSongId = songList[this.props.service]._serviceSongId;
+                    console.log(_serviceSongId);
                     let key = "G(#)";
-                    Meteor.call('services.changeSongKey', _id, songItem, key);
+                    Meteor.call('services.changeSongKey', _id, _serviceSongId, key);
                     this.setState({open: false});
                   }}>G#</button>
                   <button className="button" onClick={() => {
                       const _id = Session.get('selectedServiceId');
-                      const songItem = this.props.song._id;
-                      console.log(songItem);
+                      const _serviceSongId = songList[this.props.service]._serviceSongId;
+                      console.log(_serviceSongId);
                       let key = "E(b)";
-                      Meteor.call('services.changeSongKey', _id, songItem, key);
+                      Meteor.call('services.changeSongKey', _id, _serviceSongId, key);
                       this.setState({open: false});
                     }}>E(flat)</button>
                   <button className="button" onClick={() => {
                       const _id = Session.get('selectedServiceId');
-                      const songItem = this.props.song._id;
-                      console.log(songItem);
+                      const _serviceSongId = songList[this.props.service]._serviceSongId;
+                      console.log(_serviceSongId);
                       let key = "B(b)";
-                      Meteor.call('services.changeSongKey', _id, songItem, key);
+                      Meteor.call('services.changeSongKey', _id, _serviceSongId, key);
                       this.setState({open: false});
                     }}>B(flat)</button>
           </Dialog>

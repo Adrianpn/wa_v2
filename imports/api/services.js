@@ -60,14 +60,13 @@ Meteor.methods({
         }
 
         Services.update({ _id },
-          { $push: { serviceSong: {songId: songItem, songServiceKey: songItem, songServiceSpeed: songItem} } });
+          { $push: { serviceSong: { _serviceSongId: new Mongo.ObjectID()._str, songId: songItem, songServiceKey: "A", songServiceSpeed: songItem} } });
   },
-      'services.changeSongKey'( _id, songItem, key ) {
+      'services.changeSongKey'( _id, _serviceSongId, key ) {
         if (!this.userId) {
           throw new Meteor.Error('not-authorized');
         }
 
-        Services.update({ _id, "serviceSong.songId": songItem },
-          { $set: {  "serviceSong.$.songServiceKey": key } });
+        Services.update({ _id, "serviceSong._serviceSongId": _serviceSongId }, { $set: { "serviceSong.$.songServiceKey" : key } })
   }
 });
