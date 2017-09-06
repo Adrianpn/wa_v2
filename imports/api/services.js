@@ -12,7 +12,7 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-      'services.insert'(serviceDate, serviceSong) {
+      'services.insert'(serviceDate) {
         if (!this.userId) {
           throw new Meteor.Error('not-authorized');
         }

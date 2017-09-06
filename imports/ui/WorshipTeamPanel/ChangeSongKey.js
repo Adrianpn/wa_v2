@@ -46,7 +46,6 @@ export default class ChangeSongKey extends React.Component {
             <button className="button" onClick={() => {
                 const _id = Session.get('selectedServiceId');
                 const _serviceSongId = songList[this.props.service]._serviceSongId;
-                console.log(songList[this.props.service]._serviceSongId);
                 let key = "A";
                 Meteor.call('services.changeSongKey', _id, _serviceSongId, key);
                 this.setState({open: false});
@@ -54,7 +53,6 @@ export default class ChangeSongKey extends React.Component {
             <button className="button" onClick={() => {
                 const _id = Session.get('selectedServiceId');
                 const _serviceSongId = songList[this.props.service]._serviceSongId;
-                console.log(_serviceSongId);
                 let key = "B";
                 Meteor.call('services.changeSongKey', _id, _serviceSongId, key);
                 this.setState({open: false});
@@ -62,7 +60,6 @@ export default class ChangeSongKey extends React.Component {
             <button className="button" onClick={() => {
                 const _id = Session.get('selectedServiceId');
                 const _serviceSongId = songList[this.props.service]._serviceSongId;
-                console.log(_serviceSongId);
                 let key = "C";
                 Meteor.call('services.changeSongKey', _id, _serviceSongId, key);
                 this.setState({open: false});
@@ -70,7 +67,6 @@ export default class ChangeSongKey extends React.Component {
             <button className="button" onClick={() => {
                 const _id = Session.get('selectedServiceId');
                 const _serviceSongId = songList[this.props.service]._serviceSongId;
-                console.log(_serviceSongId);
                 let key = "D";
                 Meteor.call('services.changeSongKey', _id, _serviceSongId, key);
                 this.setState({open: false});
@@ -78,7 +74,6 @@ export default class ChangeSongKey extends React.Component {
               <button className="button" onClick={() => {
                   const _id = Session.get('selectedServiceId');
                   const _serviceSongId = songList[this.props.service]._serviceSongId;
-                  console.log(_serviceSongId);
                   let key = "E";
                   Meteor.call('services.changeSongKey', _id, _serviceSongId, key);
                   this.setState({open: false});
@@ -86,7 +81,6 @@ export default class ChangeSongKey extends React.Component {
               <button className="button" onClick={() => {
                   const _id = Session.get('selectedServiceId');
                   const _serviceSongId = songList[this.props.service]._serviceSongId;
-                  console.log(_serviceSongId);
                   let key = "F";
                   Meteor.call('services.changeSongKey', _id, _serviceSongId, key);
                   this.setState({open: false});
@@ -94,7 +88,6 @@ export default class ChangeSongKey extends React.Component {
                 <button className="button" onClick={() => {
                     const _id = Session.get('selectedServiceId');
                     const _serviceSongId = songList[this.props.service]._serviceSongId;
-                    console.log(_serviceSongId);
                     let key = "G";
                     Meteor.call('services.changeSongKey', _id, _serviceSongId, key);
                     this.setState({open: false});
@@ -102,7 +95,6 @@ export default class ChangeSongKey extends React.Component {
               <button className="button" onClick={() => {
                   const _id = Session.get('selectedServiceId');
                   const _serviceSongId = songList[this.props.service]._serviceSongId;
-                  console.log(_serviceSongId);
                   let key = "F#";
                   Meteor.call('services.changeSongKey', _id, _serviceSongId, key);
                   this.setState({open: false});
@@ -110,7 +102,6 @@ export default class ChangeSongKey extends React.Component {
                 <button className="button" onClick={() => {
                     const _id = Session.get('selectedServiceId');
                     const _serviceSongId = songList[this.props.service]._serviceSongId;
-                    console.log(_serviceSongId);
                     let key = "C(#)";
                     Meteor.call('services.changeSongKey', _id, _serviceSongId, key);
                     this.setState({open: false});
@@ -118,7 +109,6 @@ export default class ChangeSongKey extends React.Component {
                 <button className="button" onClick={() => {
                     const _id = Session.get('selectedServiceId');
                     const _serviceSongId = songList[this.props.service]._serviceSongId;
-                    console.log(_serviceSongId);
                     let key = "G(#)";
                     Meteor.call('services.changeSongKey', _id, _serviceSongId, key);
                     this.setState({open: false});
@@ -126,7 +116,6 @@ export default class ChangeSongKey extends React.Component {
                   <button className="button" onClick={() => {
                       const _id = Session.get('selectedServiceId');
                       const _serviceSongId = songList[this.props.service]._serviceSongId;
-                      console.log(_serviceSongId);
                       let key = "E(b)";
                       Meteor.call('services.changeSongKey', _id, _serviceSongId, key);
                       this.setState({open: false});
@@ -134,7 +123,6 @@ export default class ChangeSongKey extends React.Component {
                   <button className="button" onClick={() => {
                       const _id = Session.get('selectedServiceId');
                       const _serviceSongId = songList[this.props.service]._serviceSongId;
-                      console.log(_serviceSongId);
                       let key = "B(b)";
                       Meteor.call('services.changeSongKey', _id, _serviceSongId, key);
                       this.setState({open: false});

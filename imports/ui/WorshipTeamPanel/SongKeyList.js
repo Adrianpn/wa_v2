@@ -33,12 +33,9 @@ export default class SongKeyList extends React.Component {
     console.log('componentDidMount servicesList');
     this.servicesTracker = Tracker.autorun(() => {
       Meteor.subscribe('services');
-      //console.log("song SUPER TEST " + props.songId);
       const _id = Session.get('selectedServiceId');
       const services = Services.find().fetch();
       const serviceItem = services._id;
-      console.log(services);
-      console.log("serviceitem "+ serviceItem);
       this.setState({ services });
     });
   }

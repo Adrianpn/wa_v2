@@ -70,7 +70,7 @@ export default createContainer(() => {
   return {
     //ministries: Ministries.find({ "ministryMembers" : Meteor.userId() }).fetch(),
 
-    ministries: Ministries.find({ "ministryMembers" : Meteor.userId() }, { sort: { updatedAt:-1 } } ).fetch().map((ministry)=> {
+    ministries: Ministries.find({ "ministryMembers.memberId" : Meteor.userId() }, { sort: { updatedAt:-1 } } ).fetch().map((ministry)=> {
       return {
         ...ministry
       };

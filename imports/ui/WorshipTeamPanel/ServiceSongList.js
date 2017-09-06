@@ -40,20 +40,20 @@ export default createContainer( () => {
   return {
     services: Services.find( { _id:selectedServiceId }, { sort: { updatedAt:-1 } } ).fetch().map((service)=> {
       songList = service.serviceSong;
+      //console.log(songList[0]._serviceSongId);
 
-      function findSongs (songList) {
-        finalSongList = [];
+          function findSongs (songList) {
+            finalSongList = [];
 
-        for (var i=0; i < songList.length; i++) {
-           finalSongList[i] = songList[i].songId;
-        }
-      };
+            for (var i=0; i < songList.length; i++) {
+               finalSongList[i] = songList[i].songId;
+            }
+          };
 
-      findSongs(songList);
-
-        return {
-          ...service
-        };
+          findSongs(songList);
+            return {
+              ...service
+            };
 
       }),
     songs: Songs.find(  { _id: { $in: finalSongList } }, { sort: { updatedAt:-1 } } ).fetch().map((song)=> {

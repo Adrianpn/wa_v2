@@ -20,7 +20,8 @@ Meteor.methods({
     return Ministries.insert({
       ministryName: '',
       ministryGenre: '',
-      ministryMembers: this.userId,
+      ministryMembers: [{memberId: this.userId, adminRole: "admin", dateJoined: moment().valueOf()}],
+      public: true,
       updatedAt: moment().valueOf()
     });
   },
@@ -58,7 +59,7 @@ Meteor.methods({
         throw new Meteor.Error('not-authorized');
       }
 
-      Ministries.update({ ministryMembers: this.userId},
+      Ministries.update({ "ministryMembers.memberId": this.userId},
       {
         $set: { [name]:value }
 
