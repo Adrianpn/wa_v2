@@ -4,6 +4,7 @@ import { Session } from 'meteor/session';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Services } from '../../api/services';
 import { Songs } from '../../api/songs';
+import { Ministries } from '../../api/ministries';
 import ReactModal from 'react-modal';
 import AddSong from './AddSong';
 import ChangeSongKey from './ChangeSongKey';
@@ -51,6 +52,14 @@ export default createContainer(() => {
         };
 
       }),
+    // ministries: Ministries.find( { _id:selectedServiceId }, { sort: { updatedAt:-1 } } ).fetch().map((ministry)=> {
+    //   songList = service.serviceSong;
+    //
+    //     return {
+    //       ...ministry
+    //     };
+    //
+    //   }),
     // service: Services.findOne(selectedServiceId),
     // services: Services.find(selectedServiceId).fetch().map((service)=> {
     //     return {

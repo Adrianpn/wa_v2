@@ -1,4 +1,5 @@
 import React from 'react';
+import { createContainer } from 'meteor/react-meteor-data';
 import PrivateHeader from '../PrivateHeader';
 import ServiceRunDownList from './ServiceRunDownList';
 import { Services } from '../../api/services';
@@ -11,32 +12,33 @@ import DatePicker from 'material-ui/DatePicker';
 
 // injectTapEventPlugin();
 
-export default class ServiceRunDown extends React.Component {
-
+export class ServiceRunDown extends React.Component {
   constructor(props){
     super(props);
-
     this.state = {
-    date: null
-    }
-
+        date: null
+      }
     this.handleDate = this.handleDate.bind(this);
   };
 
-  handleDate(event, date){
+
+
+  handleDate(event, date, props){
     this.setState({date})
     var serviceDay = moment(date).format('LLLL');
-    Meteor.call('services.insert', serviceDay);
+    var ministryId = this.props.ministries[0]._id
+    Meteor.call('services.insert', serviceDay, ministryId);
   }
 
   render() {
+
     return (
       <MuiThemeProvider>
         <div>
           <PrivateHeader title="Dashboard"/>
           <div className="page-content">
             <h1>Service Run Down</h1>
-            <ServiceRunDownList/>
+            <ServiceRunDownList ministries={this.props.ministries}/>
             <DatePicker
               hintText="Enter Service Date"
               onChange={this.handleDate}
@@ -48,4 +50,18 @@ export default class ServiceRunDown extends React.Component {
       </MuiThemeProvider>
       )
     }
-}
+};
+
+export default createContainer(() => {
+  Meteor.subscribe('ministries');
+
+  return {
+    //ministries: Ministries.find({ "ministryMembers" : Meteor.userId() }).fetch(),
+
+    ministries: Ministries.find({ "ministryMembers.memberId" : Meteor.userId() }, { sort: { updatedAt:-1 } } ).fetch().map((ministry)=> {
+      return {
+        ...ministry
+      };
+    })
+  }
+}, ServiceRunDown);

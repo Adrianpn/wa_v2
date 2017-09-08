@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import { Session } from 'meteor/session';
 import { createContainer } from 'meteor/react-meteor-data';
+import { Ministries } from '../../api/ministries';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {List, ListItem} from 'material-ui/List';
@@ -35,19 +36,18 @@ const iconButtonElement = (
        }}>Delete</MenuItem>
      </IconMenu>
    );
+
   return (
       <MuiThemeProvider>
           <List>
             <ListItem
-              onClick={() => {
-                props.Session.set('selectedServiceId', props.service._id);
-              }}
+              onClick={() => { props.Session.set('selectedServiceId', props.service._id); }}
               leftAvatar={<Avatar src="http://www.material-ui.com/images/ok-128.jpg" />}
               rightIconButton={rightIconMenu}
-              primaryText={props.service.serviceDate || 'Untitled Service'}
+              primaryText={props.ministries[0].ministryName || 'Untitled Service'}
               secondaryText={
                 <div>
-                  {/* <p>{ moment(props.service.updatedAt).format('M/DD/YY') }</p> */}
+                  {props.service.serviceDate}
                 </div>
               }
               secondaryTextLines={2}
@@ -63,6 +63,14 @@ ServiceRunDownItem.propTypes = {
   Session: React.PropTypes.object.isRequired
 };
 
-export default createContainer(() => {
-  return { Session };
+export default createContainer((props) => {
+  return {
+    Session,
+    ministries: Ministries.find({ _id: props.service.ministryId }, { sort: { updatedAt:-1 } } ).fetch().map((ministry)=> {
+      // console.log("this user " + Meteor.userId());
+      return {
+        ...ministry
+      };
+    })
+   };
 }, ServiceRunDownItem);
